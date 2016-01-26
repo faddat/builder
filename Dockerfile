@@ -31,6 +31,6 @@ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 RUN go get github.com/tools/godep
 
 # Define volume
-VOLUME /go/src/github.com/mattermost/platform
+VOLUME /go/src/github.com/mattermost
 WORKDIR /go/src/github.com/mattermost/platform
 ENTRYPOINT make dist
