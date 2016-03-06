@@ -2,7 +2,7 @@
 # See License.txt for license information.
 FROM armv7/armhf-ubuntu:14.04
 
-# Install Dependancies
+# Install Node.js, Ruby, curl & build tools
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y curl build-essential git nodejs ruby-full \
@@ -15,9 +15,7 @@ RUN apt-get update \
     
 RUN gem install compass
 
-#
 # Install GO
-#
 
 ENV GOLANG_VERSION 1.6.0
 ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.linux-arm.tar.gz
