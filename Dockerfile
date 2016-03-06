@@ -31,7 +31,7 @@ RUN rm -rf /var/lib/apt/lists/*
 #ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 #RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 
-# Install Go and set gopath: New Method
+# Install Go: New Method
 ARG GOLANG_VERSION
 ARG GOLANG_SRC_SHA256
 ARG GOLANG_SRC_URL=https://golang.org/dl/go$GOLANG_VERSION.src.tar.gz
@@ -60,10 +60,12 @@ RUN set -ex \
 	\
 	&& rm -rf /usr/local/bootstrap /usr/local/go/pkg/bootstrap
 
+#Set Gopath
+ENV GOPATH /go
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 
 #Install godep
 RUN go get github.com/tools/godep
-
 
 # Define volume
 VOLUME /go/src/github.com/mattermost
