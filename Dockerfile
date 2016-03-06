@@ -1,6 +1,6 @@
 # Copyright (c) 2015 Mattermost, Inc. All Rights Reserved.
 # See License.txt for license information.
-FROM ubuntu:14.04
+FROM armv7/armhf-ubuntu:14.04
 
 # Install Dependancies
 RUN apt-get update \
