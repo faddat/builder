@@ -4,18 +4,22 @@ FROM ubuntu:14.04
 
 # Install Dependancies
 RUN apt-get update \
-    && apt-get install -y curl \
-    && curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash - \
-    && apt-get install -y build-essential git nodejs ruby-full \
-    && rm -rf /var/lib/apt/lists/*
-RUN npm update npm -g
+    && apt-get upgrade -y \
+    && apt-get install -y curl build-essential git nodejs ruby-full \
+    && curl https://nodejs.org/dist/v5.7.1/node-v5.7.1.tar.gz \
+    && tar xvf node-v5.7.1.tar.gz \
+    && ./configure \
+    && make \
+    && make install \
+    && rm -rf /var/lib/apt/lists/* 
+    
 RUN gem install compass
 
 #
 # Install GO
 #
 
-ENV GOLANG_VERSION 1.5.3
+ENV GOLANG_VERSION 1.6.0
 ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.linux-arm.tar.gz
 ENV GOLANG_DOWNLOAD_SHA256 43afe0c5017e502630b1aea4d44b8a7f059bf60d7f29dfd58db454d4e4e0ae53
 
