@@ -13,7 +13,6 @@ RUN apt-get update \
 RUN wget https://nodejs.org/dist/v5.7.1/node-v5.7.1.tar.gz
 RUN tar xvf node-v5.7.1.tar.gz 
 WORKDIR /root/node-v5.7.1
-RUN ./configure
 RUN make 
 RUN make install 
 RUN rm -rf /var/lib/apt/lists/* 
