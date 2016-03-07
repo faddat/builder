@@ -41,6 +41,10 @@ ENV GOLANG_BOOTSTRAP_VERSION 1.4.3
 ENV GOLANG_BOOTSTRAP_URL https://golang.org/dl/go$GOLANG_BOOTSTRAP_VERSION.src.tar.gz
 ENV GOLANG_BOOTSTRAP_SHA1 486db10dc571a55c8d795365070f66d343458c48
 
+#Set Gopath
+ENV GOPATH /go
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+
 RUN set -ex \
 	\
 	&& mkdir -p /usr/local/bootstrap \
@@ -57,12 +61,7 @@ RUN set -ex \
 	&& rm golang.tar.gz \
 	&& cd /usr/local/go/src \
 	&& ./make.bash \
-	\
 	&& rm -rf /usr/local/bootstrap /usr/local/go/pkg/bootstrap
-
-#Set Gopath
-ENV GOPATH /go
-ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 
 #Install godep
 RUN go get github.com/tools/godep
