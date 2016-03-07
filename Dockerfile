@@ -54,7 +54,7 @@ RUN wget -q "$GOLANG_SRC_URL" -O golang.tar.gz
 RUN echo "$GOLANG_SRC_SHA256  golang.tar.gz" | sha256sum -c - 
 RUN tar -C /usr/local -xzf golang.tar.gz 
 RUN rm golang.tar.gz 
-RUN cd /usr/local/go/src 
+WORKDIR /usr/local/go/src 
 RUN ./make.bash 
 RUN rm -rf /usr/local/bootstrap /usr/local/go/pkg/bootstrap
 
