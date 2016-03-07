@@ -50,7 +50,6 @@ RUN set -ex \
 	&& cd /usr/local/bootstrap/go/src \
 	&& ./make.bash \
 	&& export GOROOT_BOOTSTRAP=/usr/local/bootstrap/go \
-	\
 	&& wget -q "$GOLANG_SRC_URL" -O golang.tar.gz \
 	&& echo "$GOLANG_SRC_SHA256  golang.tar.gz" | sha256sum -c - \
 	&& tar -C /usr/local -xzf golang.tar.gz \
