@@ -33,7 +33,7 @@ RUN wget -q "$GOLANG_BOOTSTRAP_URL" -O golang.tar.gz
 RUN echo "$GOLANG_BOOTSTRAP_SHA1  golang.tar.gz" | sha1sum -c - 
 RUN tar -C /usr/local/bootstrap -xzf golang.tar.gz 
 RUN rm golang.tar.gz 
-RUN cd /usr/local/bootstrap/go/src 
+WORKDIR /usr/local/bootstrap/go/src 
 RUN ./make.bash 
 RUN export GOROOT_BOOTSTRAP=/usr/local/bootstrap/go 
 RUN wget -q "$GOLANG_SRC_URL" -O golang.tar.gz 
