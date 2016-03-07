@@ -6,7 +6,7 @@ WORKDIR /root
 # Install Node.js, Ruby, curl & build tools
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get install -y --no-install-recommends curl wget build-essential git nodejs ruby-full golang g++ gcc libc6-dev make\
+    && apt-get install -y --no-install-recommends curl wget build-essential git nodejs ruby-full python-pip golang g++ gcc libc6-dev make\
     && gem install compass
     
 #Download and compile node.js, step-by-step because compiling node.js is fraught with danger.
