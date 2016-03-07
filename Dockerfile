@@ -45,23 +45,22 @@ ENV GOLANG_BOOTSTRAP_SHA1 486db10dc571a55c8d795365070f66d343458c48
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 
-RUN set -ex \
-	\
-	&& mkdir -p /usr/local/bootstrap \
-	&& wget -q "$GOLANG_BOOTSTRAP_URL" -O golang.tar.gz \
-	&& echo "$GOLANG_BOOTSTRAP_SHA1  golang.tar.gz" | sha1sum -c - \
-	&& tar -C /usr/local/bootstrap -xzf golang.tar.gz \
-	&& rm golang.tar.gz \
-	&& cd /usr/local/bootstrap/go/src \
-	&& ./make.bash \
-	&& export GOROOT_BOOTSTRAP=/usr/local/bootstrap/go \
-	&& wget -q "$GOLANG_SRC_URL" -O golang.tar.gz \
-	&& echo "$GOLANG_SRC_SHA256  golang.tar.gz" | sha256sum -c - \
-	&& tar -C /usr/local -xzf golang.tar.gz \
-	&& rm golang.tar.gz \
-	&& cd /usr/local/go/src \
-	&& ./make.bash \
-	&& rm -rf /usr/local/bootstrap /usr/local/go/pkg/bootstrap
+RUN set -ex 
+RUN mkdir -p /usr/local/bootstrap 
+RUN wget -q "$GOLANG_BOOTSTRAP_URL" -O golang.tar.gz 
+RUN echo "$GOLANG_BOOTSTRAP_SHA1  golang.tar.gz" | sha1sum -c - 
+RUN tar -C /usr/local/bootstrap -xzf golang.tar.gz 
+RUN rm golang.tar.gz 
+RUN cd /usr/local/bootstrap/go/src 
+RUN ./make.bash 
+RUN export GOROOT_BOOTSTRAP=/usr/local/bootstrap/go 
+RUN wget -q "$GOLANG_SRC_URL" -O golang.tar.gz 
+RUN echo "$GOLANG_SRC_SHA256  golang.tar.gz" | sha256sum -c - 
+RUN tar -C /usr/local -xzf golang.tar.gz 
+RUN rm golang.tar.gz 
+RUN cd /usr/local/go/src 
+RUN ./make.bash 
+RUN rm -rf /usr/local/bootstrap /usr/local/go/pkg/bootstrap
 
 #Install godep
 RUN go get github.com/tools/godep
