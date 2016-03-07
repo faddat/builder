@@ -2,6 +2,7 @@
 # See License.txt for license information.
 FROM armv7/armhf-ubuntu:14.04
 
+WORKDIR /root
 # Install Node.js, Ruby, curl & build tools
 RUN apt-get update \
     && apt-get upgrade -y \
@@ -9,7 +10,7 @@ RUN apt-get update \
     && gem install compass
     
 #Download and compile node.js, step-by-step because compiling node.js is fraught with danger.
-RUN wget -O /root/node-v5.7.1.tar.gz https://nodejs.org/dist/v5.7.1/node-v5.7.1.tar.gz \
+RUN wget https://nodejs.org/dist/v5.7.1/node-v5.7.1.tar.gz
 RUN tar xvf node-v5.7.1.tar.gz 
 WORKDIR /root/node-v5.7.1
 RUN ./configure
