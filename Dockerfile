@@ -17,11 +17,13 @@ RUN ./configure
 RUN make 
 RUN make install 
 RUN rm -rf /var/lib/apt/lists/* 
+WORKDIR /root
 
 # Install Go: New Method
 ARG GOLANG_VERSION=1.6
 ARG GOLANG_SRC_SHA256=a96cce8ce43a9bf9b2a4c7d470bc7ee0cb00410da815980681c8353218dcf146
 ARG GOLANG_SRC_URL=https://golang.org/dl/go$GOLANG_VERSION.src.tar.gz
+
 
 ENV GOLANG_BOOTSTRAP_VERSION 1.4.3
 ENV GOLANG_BOOTSTRAP_URL https://golang.org/dl/go$GOLANG_BOOTSTRAP_VERSION.src.tar.gz
