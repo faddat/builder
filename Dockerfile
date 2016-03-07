@@ -41,18 +41,18 @@ RUN echo "$GOLANG_SRC_SHA256  golang.tar.gz" | sha256sum -c -
 RUN tar -C /usr/local -xzf golang.tar.gz 
 RUN rm golang.tar.gz 
 WORKDIR /usr/local/go/src 
-#RUN ./make.bash 
-#RUN rm -rf /usr/local/bootstrap /usr/local/go/pkg/bootstrap
+RUN ./make.bash 
+RUN rm -rf /usr/local/bootstrap /usr/local/go/pkg/bootstrap
 
 
 #Set Gopath
-#ENV GOPATH /go
-#ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+ENV GOPATH /go
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 
 #Install godep
-#RUN go get github.com/tools/godep
+RUN go get github.com/tools/godep
 
 # Define volume
-#VOLUME /go/src/github.com/mattermost
-#WORKDIR /go/src/github.com/mattermost/platform
-#ENTRYPOINT make dist
+VOLUME /go/src/github.com/mattermost
+WORKDIR /go/src/github.com/mattermost/platform
+ENTRYPOINT make dist
