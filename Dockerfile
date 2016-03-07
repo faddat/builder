@@ -19,7 +19,7 @@ RUN make install
 RUN rm -rf /var/lib/apt/lists/* 
 
 # Install Go: New Method
-ARG GOLANG_VERSION
+ARG GOLANG_VERSION=1.6
 ARG GOLANG_SRC_SHA256
 ARG GOLANG_SRC_URL=https://golang.org/dl/go$GOLANG_VERSION.src.tar.gz
 
